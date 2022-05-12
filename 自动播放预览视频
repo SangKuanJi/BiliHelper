@@ -1,0 +1,34 @@
+// ==UserScript==
+// @name         自动播放预览视频
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://avgle.com/videos?o=bw*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=avgle.com
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    // document.getElementsByClassName("thumb-overlay")[14].getElementsByTagName("img")[0].getAttribute("data-original").replace("1.jpg","preview.mp4")
+    var thumb = document.getElementsByClassName("thumb-overlay");
+    for(var i =0; i < thumb.length; i++)
+    {
+        var privewUrl = thumb[i].getElementsByTagName("img")[0].getAttribute("data-original").replace(/[0-9]+.jpg/,"preview.mp4");
+        var video = document.createElement("video");
+        video.src = privewUrl;
+        video.className = "preview-video img-responsive";
+        video.style = "object-fit: initial;";
+        video.loop = "loop";
+        console.log(privewUrl);
+        var imageNode = thumb[i].getElementsByTagName("img")[0];
+        imageNode.style = "display: none; height: 0px;";
+        thumb[i].insertBefore(video, imageNode);
+    }
+    var playerVideo = document.getElementsByTagName("video");
+    for (var b=0;b<playerVideo.length;b++)
+    {
+        playerVideo[b].play();
+    }
+    // Your code here...
+})();

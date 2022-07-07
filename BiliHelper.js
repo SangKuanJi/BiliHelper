@@ -4,13 +4,14 @@
 // @license MIT
 // @namespace   nana_vao_script
 // @description 自动网页全屏
-// @version     1.32
+// @version     1.33
 // @include     http://www.bilibili.com/video/BV*
 // @include     https://www.bilibili.com/video/BV*
 // @include     https://www.bilibili.com/video/av*
 // @include     http://bangumi.bilibili.com/anime/v/*
 // @include     https://bangumi.bilibili.com/anime/v/*
 // @include     https://www.bilibili.com/bangumi/play/*
+// @include     https://www.bilibili.com/medialist/*
 // @include     https://tv.cctv.com/live/*
 // @run-at      document-start
 // @grant       GM_setValue
@@ -32,13 +33,13 @@
         });
     } else {
         try{
-            localStorage.setItem('bilibililover', 'YESYESYES');
-            localStorage.setItem('defaulth5', '1');
+            //localStorage.setItem('bilibililover', 'YESYESYES');
+            //localStorage.setItem('defaulth5', '1');
         }catch(e){}
         window.addEventListener('load', function () {
             console.log("load success");
             this.$ = unsafeWindow.jQuery;
-            let elementNames = ["bpx-player-ctrl-web-enter", "player_pagefullscreen_player", "squirtle-pagefullscreen-inactive"];
+            let elementNames = ["bpx-player-ctrl-web-enter", "bilibili-player-iconfont-web-fullscreen-off", "player_pagefullscreen_player", "squirtle-pagefullscreen-inactive"];
             for(var i = 0; i < elementNames.length; i++) {
                  waitElement(elementNames[i]);
             }

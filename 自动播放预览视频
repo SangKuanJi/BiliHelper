@@ -32,3 +32,28 @@
     }
     // Your code here...
 })();
+
+// ==UserScript==
+// @name         自动播放预览视频
+// @namespace    http://tampermonkey.net/
+// @version      2024-02-08
+// @description  try to take over the world!
+// @author       You
+// @match        https://missav.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=missav.com
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    // document.getElementsByClassName("thumb-overlay")[14].getElementsByTagName("img")[0].getAttribute("data-original").replace("1.jpg","preview.mp4")
+    var thumb = document.getElementsByClassName("thumbnail group");
+    for(var i =0; i < thumb.length; i++)
+    {
+        var video = thumb[i].getElementsByTagName("video")[0];
+        video.style.display = "block"
+        video.src = video.getAttribute("data-src");
+        var imageNode = thumb[i].getElementsByTagName("img")[0];
+        imageNode.style = "display: none; height: 0px;";
+        video.play();
+    }
+})();
